@@ -12,7 +12,7 @@ const AddTodos = (props) => {
 
         props.onSubmit({
             id: Math.floor(Math.random() * 1000),
-            text: input
+            title: input
         });
         // console.log(input);
         setInput('');
