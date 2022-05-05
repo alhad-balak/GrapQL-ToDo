@@ -3,16 +3,16 @@
     margin: 0;
     padding: 0;
     font-family: 'PT Sans', sans-serif;
-  }
-  
-  body {
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     background: #161623;
-  }
-  
-  body::before {
+}
+
+body::before {
     content: '';
     position: absolute;
     top: 0;
@@ -21,9 +21,9 @@
     height: 100%;
     background: linear-gradient(#f00, #f0f);
     clip-path: circle(45% at right 90%);
-  }
-  
-  body::after {
+}
+
+body::after {
     content: '';
     position: absolute;
     top: 0;
@@ -32,9 +32,9 @@
     height: 100%;
     background: linear-gradient(#2196F3, #E91E63);
     clip-path: circle(30% at 10% 10%);
-  }
-  
-  .todo-app {
+}
+
+.todo-app {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -54,30 +54,13 @@
     border-radius: 10px;
     padding-bottom: 32px;
     z-index: 1;
-  }
-  
-  h1, h2 {
-    margin: 15px 0 10px 0px;
-    color: #fff;
-    font-size: 24px;
-    font-family: 'Nunito', sans-serif;
-  }
-  h4{
-    color: rgba(255, 255, 255, 0.703);
-    font-size:12px;
-    font-family: 'Nunito', sans-serif;
-  }
-  
-  .complete {
-    text-decoration: line-through;
-    opacity: 0.4;
-  }
-  
-  .todo-form {
+}
+
+.todo-form {
     margin-bottom: 60px;
-  }
-  
-  .todo-input {
+}
+
+.todo-input {
     padding: 14px 32px 14px 16px;
     border-radius: 4px 0 0 4px;
     border: 2px solid #5d0cff;
@@ -86,118 +69,64 @@
     background: transparent;
     color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  }
-  
-  .todo-input::placeholder {
+}
+
+.todo-input::placeholder {
     color: #e2e2e2;
-  }
-  
-  .todo-button {
+}
+
+.todo-button {
     padding: 16px;
     border: none;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
     outline: none;
     background: linear-gradient(90deg,
-        rgba(93, 12, 255, 1) 0%,
-        rgba(155, 0, 250, 1) 100%);
+            rgba(93, 12, 255, 1) 0%,
+            rgba(155, 0, 250, 1) 100%);
     color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  }
-  
-  .todo-button:hover {
+}
+
+.todo-button:hover {
     text-transform: uppercase;
-  }
-  
-  .todo-input.edit {
+}
+
+.todo-input.edit {
     border: 2px solid #149fff;
-  }
-  
-  .todo-button.edit {
+}
+
+.todo-button.edit {
     background: linear-gradient(90deg,
-        rgba(20, 159, 255, 1) 0%,
-        rgba(17, 122, 255, 1) 100%);
+            rgba(20, 159, 255, 1) 0%,
+            rgba(17, 122, 255, 1) 100%);
     padding: 16px 22px;
-  }
-  
-  .todo-container {
+}
+
+.todo-container {
     display: flex;
     flex-direction: row;
     position: relative;
-  }
-  
-  .todo-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 8px auto;
-    width: 100% !important;
-    color: #fff;
-    background: rgba(255, 118, 20, 0.5) 0%;
-    padding: 12px;
-    border-radius: 5px;
-    width: 90%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  }
-  
-  .todo-row:nth-child(4n + 1) {
-    background: rgba(93, 12, 255, 0.5) 0%;
-  }
-  
-  .todo-row:nth-child(4n + 2) {
-    background: rgba(250, 0, 135, 0.5) 100%;
-  }
-  
-  .todo-row:nth-child(4n + 3) {
-    background: rgba(20, 159, 255, 0.5) 0%;
-  }
-  
-  .icons {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .delete-icon {
-    margin-right: 5px;
-    color: #fff;
-  }
-  
-  .delete-icon:hover,
-  .edit-icon:hover,
-  .complete-icon:hover {
-    font-size: larger;
-    color: #a882f3;
-  }
-  
-  .edit-icon,
-  .complete-icon {
-    color: #fff;
-    margin: 0px 3px;
-  }
-  
-  @media (min-width: 320px) and (max-width: 650px) {
+}
+
+
+@media (min-width: 320px) and (max-width: 650px) {
     .todo-app {
-      margin: 0;
-      height: 100vh;
-      width: 100vw;
-      backdrop-filter: blur(-5px);
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+        backdrop-filter: blur(-5px);
     }
-  
-    /* .todo-context {
-      width: 80vw;
-    } */
-  
+
     .todo-input {
-      width: 215px;
+        width: 215px;
     }
-  
+
     .todo-row {
-      width: 80%;
+        width: 80%;
     }
-  
+
     .todo-button:hover {
-      text-transform: none;
+        text-transform: none;
     }
-  }
+}

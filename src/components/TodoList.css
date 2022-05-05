@@ -1,0 +1,68 @@
+h2 {
+    margin: 15px 0 10px 0px;
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Nunito', sans-serif;
+}
+
+h4 {
+    color: rgba(255, 255, 255, 0.703);
+    font-size: 12px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.complete {
+    text-decoration: line-through;
+    opacity: 0.4;
+}
+
+.todo-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px auto;
+    width: 100% !important;
+    color: #fff;
+    background: rgba(255, 118, 20, 0.5) 0%;
+    padding: 12px;
+    border-radius: 5px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.todo-row:nth-child(4n + 1) {
+    background: rgba(93, 12, 255, 0.5) 0%;
+}
+
+.todo-row:nth-child(4n + 2) {
+    background: rgba(250, 0, 135, 0.5) 100%;
+}
+
+.todo-row:nth-child(4n + 3) {
+    background: rgba(20, 159, 255, 0.5) 0%;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.delete-icon {
+    margin-right: 5px;
+    color: #fff;
+}
+
+.delete-icon:hover,
+.edit-icon:hover,
+.complete-icon:hover {
+    font-size: larger;
+    color: #a882f3;
+}
+
+.edit-icon,
+.complete-icon {
+    color: #fff;
+    margin: 0px 3px;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddTodos from './AddTodos';
 import { RiCloseCircleLine, RiCheckFill, RiCheckboxIndeterminateLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
+import "./TodoList.css"
 
 const TodoList = ({ todos, completeTodo, removeTodo, updateTodo }) => {
     const [edit, setEdit] = useState({
