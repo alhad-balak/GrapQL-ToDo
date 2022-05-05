@@ -1,26 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 
-const AddTodos = () => {
+const AddTodos = (props) => {
     const [input, setInput] = useState(props.edit ? props.edit.value : '');
     const inputRef = useRef(null);
     useEffect(() => {
         inputRef.current.focus();
     })
 
-    const handleSubmit = event => {
-        event.preventDefault();
+    const handleSubmit = e => {
+        e.preventDefault();
+
         props.onSubmit({
             id: Math.floor(Math.random() * 1000),
             text: input
         });
         // console.log(input);
         setInput('');
-
     };
 
-    const handleChange = changedEvent => {
-        setInput(changedEvent.target.value);
+    const handleChange = e => {
+        setInput(e.target.value);
     }
+
     return (
         <form className="todo-form" onSubmit={handleSubmit}>
             {props.edit ? (
