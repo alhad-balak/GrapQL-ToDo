@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect }  from 'react'
 import AddTodos from './AddTodos'
+import TodoList from './TodoList';
 
 const Todo = () => {
     const [todos, setTodos] = useState([]);
@@ -51,6 +52,7 @@ const Todo = () => {
         <div className="todo-context">
             <h1>Things to do Today.</h1>
             <AddTodos onSubmit={addTodo} />
+            <TodoList todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodo={updateTodo} />
         </div>
     )
 }
