@@ -1,0 +1,12 @@
+h1{
+    margin: 15px 0 10px 0px;
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Nunito', sans-serif;
+  }
+
+@media (min-width: 320px) and (max-width: 650px) {
+    .todo-context {
+      width: 80vw;
+    }
+}
