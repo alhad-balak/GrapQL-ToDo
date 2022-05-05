@@ -23,24 +23,22 @@ h4 {
     margin: 8px auto;
     width: 100% !important;
     color: #fff;
-    background: rgba(255, 118, 20, 0.5) 0%;
+    background: rgba(231, 110, 24, 0.674) 0%;
     padding: 12px;
     border-radius: 5px;
     width: 90%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-.todo-row:nth-child(4n + 1) {
-    background: rgba(93, 12, 255, 0.5) 0%;
+.todo-row:nth-child(3n + 1) {
+    background: rgba(9, 176, 218, 0.5) 0%;
 }
 
-.todo-row:nth-child(4n + 2) {
+.todo-row:nth-child(3n + 2) {
     background: rgba(250, 0, 135, 0.5) 100%;
 }
 
-.todo-row:nth-child(4n + 3) {
-    background: rgba(20, 159, 255, 0.5) 0%;
-}
+
 
 .icons {
     display: flex;
