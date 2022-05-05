@@ -26,9 +26,9 @@ const TodoList = ({ todos, completeTodo, removeTodo, updateTodo }) => {
             <h2>Pending Tasks?</h2>
             {
                 todos.map((todo, index) => (
-                    !todo.isComplete && <div className='todo-row' key={index}>
+                    !todo.completed && <div className='todo-row' key={index}>
                         <div key={todo.id}>
-                            {todo.text}
+                            {todo.title}
                         </div>
                         <div className='icons'>
                             <RiCheckFill
@@ -40,7 +40,7 @@ const TodoList = ({ todos, completeTodo, removeTodo, updateTodo }) => {
                                 className='delete-icon'
                             />
                             <TiEdit
-                                onClick={() => setEdit({ id: todo.id, value: todo.text })}
+                                onClick={() => setEdit({ id: todo.id, value: todo.title })}
                                 className='edit-icon'
                             />
                         </div>
@@ -50,9 +50,9 @@ const TodoList = ({ todos, completeTodo, removeTodo, updateTodo }) => {
             <h2>Completed Tasks.</h2>
             {
                 todos.map((todo, index) => (
-                    todo.isComplete && <div className='todo-row complete' key={index}>
+                    todo.completed && <div className='todo-row complete' key={index}>
                         <div key={todo.id}>
-                            {todo.text}
+                            {todo.title}
                         </div>
                         <div className='icons'>
                             <RiCheckboxIndeterminateLine

@@ -1,12 +1,11 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect } from 'react'
 import AddTodos from './AddTodos'
 import TodoList from './TodoList';
 import "./Todo.css"
 
-const Todo = () => {
-    const [todos, setTodos] = useState([]);
+const Todo = ({todos, setTodos}) => {
     const LOCAL_STORAGE_KEY = "react-do-list-todos";
-
+    console.log(todos);
     useEffect(() => {
         const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
         if (storageTodos) {
@@ -19,7 +18,7 @@ const Todo = () => {
     }, [todos]);
 
     const addTodo = todo => {
-        if (!todo.text || /^\s*$/.test(todo.text)) {
+        if (!todo.title || /^\s*$/.test(todo.title)) {
             return
         }
         const newTodos = [todo, ...todos];
@@ -28,7 +27,7 @@ const Todo = () => {
     };
 
     const updateTodo = (todoId, newValue) => {
-        if (!newValue.text || /^\s*$/.test(newValue.text)) {
+        if (!newValue.title || /^\s*$/.test(newValue.title)) {
             return
         }
 
@@ -43,7 +42,7 @@ const Todo = () => {
     const completeTodo = id => {
         let updatedTodos = todos.map(todo => {
             if (todo.id === id) {
-                todo.isComplete = !todo.isComplete
+                todo.completed = !todo.completed
             }
             return todo;
         })
