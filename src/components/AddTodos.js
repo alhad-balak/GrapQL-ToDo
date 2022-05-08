@@ -5,7 +5,7 @@ const AddTodos = (props) => {
     const inputRef = useRef(null);
     useEffect(() => {
         inputRef.current.focus();
-    })
+    },[]);
 
     const handleSubmit = e => {
         e.preventDefault();

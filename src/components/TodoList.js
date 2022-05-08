@@ -4,7 +4,7 @@ import { RiCloseCircleLine, RiCheckFill, RiCheckboxIndeterminateLine } from 'rea
 import { TiEdit } from 'react-icons/ti';
 import "./TodoList.css"
 
-const TodoList = ({ todos, completeTodo, removeTodo, updateTodo }) => {
+const TodoList = ({ todos, completeTodo, removeTodo, updateTodo, removeTodoCompl, setAlert }) => {
     const [edit, setEdit] = useState({
         id: null,
         value: ''
@@ -17,7 +17,6 @@ const TodoList = ({ todos, completeTodo, removeTodo, updateTodo }) => {
             value: ''
         });
     };
-
     if (edit.id) {
         return <AddTodos edit={edit} onSubmit={submitUpdate} />
     }
@@ -60,7 +59,7 @@ const TodoList = ({ todos, completeTodo, removeTodo, updateTodo }) => {
                                 className='complete-icon'
                             />
                             <RiCloseCircleLine
-                                onClick={() => removeTodo(todo.id)}
+                                onClick={() => removeTodoCompl(todo.id)}
                                 className='delete-icon'
                             />
                         </div>

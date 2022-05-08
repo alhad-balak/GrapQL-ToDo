@@ -9,7 +9,7 @@ const App = () => {
       .then(response => response.json())
       .then(Data => setTodos(Data))
   }, [])
-  console.log(todos);
+  // console.log(todos);
   return (
     <div className="todo-app">
       <Todo todos={todos} setTodos={setTodos} />
