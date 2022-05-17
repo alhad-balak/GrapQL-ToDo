@@ -4,18 +4,19 @@ import { RiCloseCircleLine, RiCheckFill, RiCheckboxIndeterminateLine } from 'rea
 import { TiEdit } from 'react-icons/ti';
 import "./TodoList.css"
 
-const TodoList = ({ todos, completeTodo, removeTodo, updateTodo, removeTodoCompl, setAlert }) => {
+const TodoList = ({ todos, toCompleteTodo, removeTodo, updateTodoItem, toInCompleteTodo }) => {
     const [edit, setEdit] = useState({
         id: null,
         value: ''
     });
 
     const submitUpdate = value => {
-        updateTodo(edit.id, value)
+        updateTodoItem(edit.id, value)
         setEdit({
             id: null,
             value: ''
         });
+        // window.location.reload();
     };
     if (edit.id) {
         return <AddTodos edit={edit} onSubmit={submitUpdate} />
@@ -31,7 +32,7 @@ const TodoList = ({ todos, completeTodo, removeTodo, updateTodo, removeTodoCompl
                         </div>
                         <div className='icons'>
                             <RiCheckFill
-                                onClick={() => completeTodo(todo.id)}
+                                onClick={() => toCompleteTodo(todo.id)}
                                 className='complete-icon'
                             />
                             <RiCloseCircleLine
@@ -55,11 +56,11 @@ const TodoList = ({ todos, completeTodo, removeTodo, updateTodo, removeTodoCompl
                         </div>
                         <div className='icons'>
                             <RiCheckboxIndeterminateLine
-                                onClick={() => completeTodo(todo.id)}
+                                onClick={() => toInCompleteTodo(todo.id)}
                                 className='complete-icon'
                             />
                             <RiCloseCircleLine
-                                onClick={() => removeTodoCompl(todo.id)}
+                                onClick={() => removeTodo(todo.id)}
                                 className='delete-icon'
                             />
                         </div>

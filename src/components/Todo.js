@@ -2,83 +2,83 @@ import React, { useState, useEffect } from 'react'
 import AddTodos from './AddTodos'
 import TodoList from './TodoList';
 import "./Todo.css"
-import Alert from './Alert';
+import { useMutation, gql } from '@apollo/client';
 
-const Todo = ({ todos, setTodos }) => {
-    const LOCAL_STORAGE_KEY = "react-do-list-todos";
-    // console.log(todos);
-    const [alert, setAlert] = useState(false);
-    const [alertVis, setAlertVis] = useState(false)
-    useEffect(() => {
-        const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-        if (storageTodos) {
-            setTodos(storageTodos)
-        }
-    }, []);
 
-    useEffect(() => {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
-    }, [todos]);
+const CREATE_TODO = gql`
+mutation createTODO($titleText: String!) {
+    insert_todo(objects: {title: $titleText, completed: false}) {
+        affected_rows
+    }
+}`
 
-    const addTodo = todo => {
-        if (!todo.title || /^\s*$/.test(todo.title)) {
+const UPDATE_TODO = gql`
+mutation updateTODO($givenID: uuid!, $givenText: String!) {
+  update_todo(where: {id: {_eq: $givenID}}, _set: {title: $givenText, completed: false}) {
+    affected_rows
+    
+  }
+}`
+
+const STATUS_TODO = gql`
+mutation statusTODO($givenID: uuid!, $givenStatus: Boolean) {
+    update_todo(where: {id: {_eq: $givenID}}, _set: {completed: $givenStatus}) {
+      affected_rows
+    }
+  }`
+
+
+const DELETE_TODO = gql`
+mutation deleteTODO($givenID: uuid!) {
+  delete_todo(where: {id: {_eq: $givenID}}) {
+    affected_rows
+  }
+}`
+
+const Todo = ({ todos }) => {
+
+    const [createTodo, { dataCreate, loadingCreate, errorCreate }] = useMutation(CREATE_TODO);
+    const [deleteTodo, { dataDelete, loadingDelete, errorDelete }] = useMutation(DELETE_TODO);
+    const [updateTodo, { dataUpdate, loadingUpdate, errorUpdate }] = useMutation(UPDATE_TODO);
+    const [statusTodo, { dataStatus, loadingStatus, errorStatus }] = useMutation(STATUS_TODO);
+
+    const addTodo = eventValue => {
+        // console.log(typeof (eventValue), eventValue.title);
+        if (!eventValue.title || /^\s*$/.test(eventValue.title)) {
             return
         }
-        const newTodos = [todo, ...todos];
-        setTodos(newTodos);
-        // console.log(...todos);
+        createTodo({ variables: { titleText: eventValue.title } });
+        // window.location.reload();
     };
 
-    const updateTodo = (todoId, newValue) => {
+    const updateTodoItem = (todoId, newValue) => {
         if (!newValue.title || /^\s*$/.test(newValue.title)) {
             return
         }
-        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
+        updateTodo({ variables: { givenID: todoId, givenText: newValue.title } })
+        // window.location.reload();
     }
-    const [remID, setRemID] = useState(0);
     const removeTodo = id => {
-        setAlertVis(true);
-        setRemID(id);
-        console.warn("Remove todo clicked.");
-        // if (alert === true) {
-        //     const removeArr = [...todos].filter(todo => todo.id !== id);
-        //     setTodos(removeArr);
-        //     console.warn("Alert!");
-        // }
-
-    };
-    const removeTodoCompl = id => {
-        const removeArr = [...todos].filter(todo => todo.id !== id);
-        setTodos(removeArr);
+        deleteTodo({ variables: { givenID: id } })
+        // window.location.reload();
     };
 
+    const toCompleteTodo = id => {
+        // console.log(id, typeof true);
+        statusTodo({ variables: { givenID: id, givenStatus: true } });
+        // window.location.reload();
+    };
 
-    const handleCancel = () => {
-        setAlert(false);
-        setAlertVis(false);
-    }
-    const handleOK = () => {
-        setAlert(true);
-        setAlertVis(false);
-        const removeArr = [...todos].filter(todo => todo.id !== remID);
-        setTodos(removeArr);
-        console.warn("Alert!");
-    }
-    const completeTodo = id => {
-        let updatedTodos = todos.map(todo => {
-            if (todo.id === id) {
-                todo.completed = !todo.completed
-            }
-            return todo;
-        })
-        setTodos(updatedTodos);
+    const toInCompleteTodo = id => {
+        // console.log(id);
+        statusTodo({ variables: { givenID: id, givenStatus: false }});
+        window.location.reload();
     };
     return (
         <div className="todo-context">
             <h1>Things to do Today.</h1>
-            <Alert handleOK={handleOK} handleCancel={handleCancel} alertVis={alertVis} />
-            <AddTodos onSubmit={addTodo}/>
-            <TodoList todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodo={updateTodo} removeTodoCompl={removeTodoCompl} setAlert={setAlert} />
+            <AddTodos onSubmit={addTodo} />
+            <TodoList todos={todos} toCompleteTodo={toCompleteTodo} toInCompleteTodo={toInCompleteTodo} removeTodo={removeTodo} updateTodoItem={updateTodoItem}/>
         </div>
     )
 }
