@@ -1,4 +1,4 @@
-## Check out the [live link.](https://api-todo.netlify.app/)
+## Check out the [live link.](https://ql-todos.netlify.app/)
 
 # Getting Started with Create React App
 
